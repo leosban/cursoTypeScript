@@ -3,7 +3,7 @@
 let x: unknown;
 
 x = 100;
-x = 'Luiz';
+x = 'Leonidas';
 x = 900;
 x = 10; // Alteramos o valor para number, assim a conta vai ser feita
 const y = 800;
