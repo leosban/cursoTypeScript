@@ -2,7 +2,7 @@
 // mais de um tipo, usamos o sinal de '|' usando como 'OU'
 
 // Função de exemplo tipada como number
-function sum(a: number, b: number): number {
+export function sum(a: number, b: number): number {
   return a + b;
 }
 
