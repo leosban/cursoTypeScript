@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,38 @@
   <title>Vanilla TypeScript</title>
   <link rel="stylesheet" href="/frontend/css/style.css">
 </head>
-<body>
-  <h1>HELLO WORLD</h1>
 
-<script src="assets/js/bundle.js"></script>
+<body>
+  <div class="container">
+    <form action="" id="form" class="form">
+      <h2>Make your registration</h2>
+      <div class="form-fields">
+        <label for="username">Your user:</label>
+        <input type="text" name="username" class="username" id="username" placeholder="Your user">
+        <span class="error-message">Invalid field</span>
+      </div>
+      <div class="form-fields">
+        <label for="email">Your email:</label>
+        <input type="email" class="email" name="email" id="email" placeholder="Your email">
+        <span class="error-message">Invalid field</span>
+      </div>
+      <div class="form-fields">
+        <label for="username">Your password:</label>
+        <input type="password" class="password" name="password" id="password" placeholder="Your password">
+        <span class="error-message">Invalid field</span>
+      </div>
+      <div class="form-fields">
+        <label for="username">Repeat password:</label>
+        <input type="password" name="password2" id="password2" placeholder="Repeat password">
+        <span class="error-message">Invalid field</span>
+      </div>
+      <div class="form-fields">
+        <button type="submit">Send</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="assets/js/bundle.js"></script>
 </body>
+
 </html>
