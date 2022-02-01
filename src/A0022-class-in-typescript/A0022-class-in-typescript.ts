@@ -32,8 +32,8 @@ export class Company {
   // Metódo para mostrar colaboradores
   showEmployees(): void {
     // eslint-disable-next-line no-class-assign
-    for (Employees of this.employees) {
-      console.log(Employees);
+    for (const employee of this.employees) {
+      console.log(employee);
     }
   }
 }
