@@ -51,6 +51,7 @@ export class Pen extends Tools {
   }
 }
 
+// Criação da classe maquina de escreve que extende de ferramenta
 export class TypeWriter extends Tools {
   // Inserimos o metodo de escrita aqui, para fazer com que a maquina de escrever funcione
   writer(): void {
