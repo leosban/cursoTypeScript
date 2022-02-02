@@ -72,6 +72,7 @@ function shouldSendForm(form: HTMLFormElement): boolean {
   form
     // Se na verifição houver uma messagem de error, mudaremos a flag para 'false'
     .querySelectorAll('.' + SHOW_ERROR_MESSAGES)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .forEach((element) => (send = false));
   return send;
 }
