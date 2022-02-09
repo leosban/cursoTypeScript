@@ -1,14 +1,11 @@
-// Observa o que o objeto está fazendo, pode modificar o objeto ou substituir o
-// objeto por completo.
-// São funções que são chamadas em determinados momentos do código
-// Alteração feita no tsconfig.json para poder usar os decorators
-
 // Para alterar algo dentro da classe, sem mexer na original usamos os decorators
 // ou seja, o decorador, vai decorar as classes
 // É uma função qualquer, que vai receber a classe que vai ser decorada
 // Fazemos a tipagem com generics <T> e restringimos com uma classe genérica
 // Se construtor receber algo, identificamos com ...args
-function decorator<T extends new (...args: any[]) => any>(target: T): T {
+function invertNameAndColor<T extends new (...args: any[]) => any>(
+  target: T,
+): T {
   return class extends target {
     name: string;
     // Se quisermos alterar o parametro color, criamos o atributo aqui no decorator
@@ -32,7 +29,7 @@ function decorator<T extends new (...args: any[]) => any>(target: T): T {
 // Ex decorator de class:
 // Chamamos o decorator com '@nomeDaFuncaoDecorator' onde a classe animal, passa
 // automaticamente dentro do decorator
-@decorator
+@invertNameAndColor
 export class Animal {
   constructor(public name: string, public color: string) {}
 }
