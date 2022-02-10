@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Tipo de construtor da classe
 type Constructor = new (...args: any[]) => any;
 
