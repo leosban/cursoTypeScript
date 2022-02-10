@@ -15,7 +15,6 @@ namespace MyNameSpace {
   }
   // Instanciando a classe dentro do namespace
   const person = new NameSpacePerson('Junior');
-  console.log(person);
 
   // Para acessar a const abaixo temos que exportar o namespace que já está
   // dentro de um namespace
@@ -23,12 +22,3 @@ namespace MyNameSpace {
     export const nameOfNameSpace = 'Name at the other namespace';
   }
 }
-
-// Instanciando a classe fora do namespace
-const personNameSpace = new MyNameSpace.NameSpacePerson('Junior');
-console.log(personNameSpace);
-console.log(MyNameSpace.nameOfNameSpace);
-console.log(MyNameSpace.OtherNameSpace);
-
-// Metódo para sair do script mode;
-export default 1;
