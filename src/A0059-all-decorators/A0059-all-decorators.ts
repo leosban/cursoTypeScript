@@ -58,7 +58,7 @@ function decoratorOfParameterOfStaticMethod(
   propertyIndex: number,
 ): any {
   // Chamado na criação do parâmetro (não precisa chamar o método)
-  console.log('PARÂMETRO DE MÉTODO ESTÁTICO');
+  console.log('PARAMETER OF STATIC METHOD');
   console.log(classConstructor);
   console.log(methodName);
   console.log(propertyIndex);
@@ -71,7 +71,7 @@ function decoratorOfParameterOfStaticMethod(
 decoratorOfProperty;
 function decoratorOfProperty(classProperty: any, propertyName: string): any {
   // Chamado na criação da propriedade
-  console.log('DECORADOR DE PROPRIEDADE');
+  console.log('PROPERTY DECORATOR');
   console.log(classProperty);
   console.log(propertyName);
   console.log('########');
@@ -83,12 +83,12 @@ function decoratorOfProperty(classProperty: any, propertyName: string): any {
     enumerable: true,
     configurable: true,
     get: () => propertyValue,
-    set: (valor: any) => {
-      if (typeof valor === 'string') {
-        propertyValue = valor.split('').reverse().join('');
+    set: (value: any) => {
+      if (typeof value === 'string') {
+        propertyValue = value.split('').reverse().join('');
         return;
       }
-      propertyValue = valor;
+      propertyValue = value;
     },
   };
 }
@@ -99,7 +99,7 @@ function decoratorOfStaticProperties(
   propertyName: string,
 ): any {
   // Chamado na criação da propriedade estática
-  console.log('DECORADOR DE PROPRIEDADE ESTÁTICA');
+  console.log('DECORATOR OF STATIC PROPERTY');
   console.log(classConstructor);
   console.log(propertyName);
   console.log('########');
@@ -142,7 +142,7 @@ function decoratorOfGetterAndSetterStatic(
 ): any {
   // Chamado na criação do método
   // (só pode ser aplicado no getter ou no setter - não em ambos)
-  console.log('GETTER/SETTER estático');
+  console.log('GETTER/SETTER static');
   console.log(classConstructor);
   console.log(propertyName);
   console.log(PropertyDescriptor);
@@ -159,63 +159,61 @@ function decoratorOfGetterAndSetterStatic(
 // A classe e o uso dos decorators
 
 @decoratorOfClasses
-export class UmaPessoa {
+export class Person {
   @decoratorOfProperty
-  nome: string;
-  sobrenome: string;
-  idade: number;
+  name: string;
+  lastname: string;
+  age: number;
 
   @decoratorOfStaticProperties
-  static propriedadeEstatica = 'VALOR PROPRIEDADE ESTÁTICA';
+  static staticProperty = 'PROPERTY STATIC VALUE';
 
-  constructor(nome: string, sobrenome: string, idade: number) {
-    this.nome = nome;
-    this.sobrenome = sobrenome;
-    this.idade = idade;
+  constructor(name: string, lastname: string, age: number) {
+    this.name = name;
+    this.lastname = lastname;
+    this.age = age;
   }
 
   @decoratorOfMethod
-  metodo(@decoratorOfParameterOfMethod msg: string): string {
-    return `${this.nome} ${this.sobrenome}: ${msg}`;
+  method(@decoratorOfParameterOfMethod msg: string): string {
+    return `${this.name} ${this.lastname}: ${msg}`;
   }
 
   @staticDecorator
-  static metodoEstatico(
-    @decoratorOfParameterOfStaticMethod msg: string,
-  ): string {
-    return UmaPessoa.propriedadeEstatica + ' - ' + msg;
+  static staticMethod(@decoratorOfParameterOfStaticMethod msg: string): string {
+    return Person.staticProperty + ' - ' + msg;
   }
 
   get nomeCompleto(): string {
-    return this.nome + ' ' + this.sobrenome;
+    return this.name + ' ' + this.lastname;
   }
 
   @decoratorOfGetterAndSetterNormal
-  set nomeCompleto(valor: string) {
-    const palavras = valor.split(/\s+/g);
-    const primeiroNome = palavras.shift();
-    if (!primeiroNome) return;
-    this.nome = primeiroNome;
-    this.sobrenome = palavras.join(' ');
+  set fullName(valor: string) {
+    const words = valor.split(/\s+/g);
+    const firstName = words.shift();
+    if (!firstName) return;
+    this.name = firstName;
+    this.lastname = words.join(' ');
   }
 
   @decoratorOfGetterAndSetterStatic
   static get staticPropertyGetterSetter(): string {
-    return UmaPessoa.propriedadeEstatica;
+    return Person.staticProperty;
   }
 
   static set staticPropertyGetterSetter(value: string) {
-    UmaPessoa.propriedadeEstatica = value;
+    Person.staticProperty = value;
   }
 }
 
 // Uso da classe
 
-const pessoa = new UmaPessoa('Luiz', 'Otávio', 30);
-pessoa.nomeCompleto = 'João Silva Oliveira';
-const metodo = pessoa.metodo('Olá mundo!');
-const metodoEstatico = UmaPessoa.metodoEstatico('Olá mundo!');
+const pessoa = new Person('Leônidas', 'Junior', 30);
+pessoa.fullName = 'Leônidas Santos Bandeira Junior';
+const metodo = pessoa.method('Hello World!');
+const metodoEstatico = Person.staticMethod('Hello World!');
 console.log(pessoa);
 console.log(metodo);
 console.log(metodoEstatico);
-console.log(UmaPessoa.propriedadeEstatica);
+console.log(Person.staticProperty);
